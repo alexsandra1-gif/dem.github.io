@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎄 New Year Crossword</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+        h1 {
+            margin-bottom: 5px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        .subtitle {
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+        .crossword-container {
+            display: inline-block;
+            background: #2c3e50;
+            padding: 15px;
+            border-radius: 10px;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.4);
+        }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(10, 40px);
+            grid-gap: 1px;
+            margin: 0 auto 20px;
+        }
+        .cell {
+            width: 40px;
+            height: 40px;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 18px;
+            font-weight: bold;
+            position: relative;
+        }
+        .cell.black {
+            background: #34495e;
+        }
+        .cell input {
+            width: 36px;
+            height: 36px;
+            text-align: center;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            outline: none;
+            background: transparent;
+            text-transform: uppercase;
+        }
+        .cell input:focus {
+            background-color: #fff9c4;
+        }
+        .clues {
+            text-align: left;
+            max-width: 500px;
+            margin: 20px auto;
+            padding: 15px;
+            background: rgba(0,0,0,0.3);
+            border-radius: 8px;
+        }
+        .clues h2 {
+            margin-top: 0;
+        }
+        .clue {
+            margin: 8px 0;
+        }
+        .btn {
+            background: #e74c3c;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 10px 5px;
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .btn:hover {
+            background: #c0392b;
+        }
+        .btn.check {
+            background: #2ecc71;
+        }
+        .btn.check:hover {
+            background: #27ae60;
+        }
+        .message {
+            margin-top: 15px;
+            font-weight: bold;
+            min-height: 24px;
+        }
+        .correct { color: #2ecc71; }
+        .incorrect { color: #e74c3c; }
+    </style>
+</head>
+<body>
+    <h1>🎅 New Year Crossword</h1>
+    <p class="subtitle">Fill in the English words — all related to New Year & winter!</p>
+
+    <div class="crossword-container">
+        <div class="grid" id="grid"></div>
+    </div>
+
+    <div class="clues">
+        <h2>Clues:</h2>
+        <div class="clue"><strong>Across:</strong></div>
+        <div class="clue">3. ❄️ Frozen water (3 letters)</div>
+        <div class="clue">4. 🥗 Olivier or "Herring under a fur coat" (5 letters)</div>
+        <div class="clue">5. 🍊 Symbolic New Year fruit (8 letters)</div>
+        <div class="clue"><strong>Down:</strong></div>
+        <div class="clue">1. ❄️ White flakes from the sky (4 letters)</div>
+        <div class="clue">2. ⚡ Heavy snow with strong wind (9 letters)</div>
+    </div>
+
+    <div>
+        <button class="btn check" onclick="checkAnswers()">✅ Check Answers</button>
+        <button class="btn" onclick="resetGrid()">🔄 Reset</button>
+    </div>
+    <div class="message" id="message"></div>
+
+    <script>
+        // Кроссвордная сетка 10x10: '.' = пусто (ввод), '#' = чёрная клетка, буквы — для фиксированных (не нужны здесь)
+        // Слова:
+        // snow (down, col=2, row=0) → 4 буквы
+        // snowstorm (down, col=6, row=0) → 9 букв (до row=8)
+        // ice (across, row=3, col=1) → 3 буквы
+        // salad (across, row=5, col=1) → 5 букв
+        // mandarin (across, row=7, col=1) → 8 букв
+
+        const gridPattern = [
+            ['#', '#', 's', '#', '#', '#', 's', '#', '#', '#'],
+            ['#', '#', 'n', '#', '#', '#', 'n', '#', '#', '#'],
+            ['#', '#', 'o', '#', '#', '#', 'o', '#', '#', '#'],
+            ['#', 'i', 'w', 'c', 'e', '#', 'w', '#', '#', '#'],
+            ['#', '#', '#', '#', '#', '#', 's', '#', '#', '#'],
+            ['#', 's', 'a', 'l', 'a', 'd', 't', '#', '#', '#'],
+            ['#', '#', '#', '#', '#', '#', 'o', '#', '#', '#'],
+            ['#', 'm', 'a', 'n', 'd', 'a', 'r', 'i', 'n', '#'],
+            ['#', '#', '#', '#', '#', '#', 'm', '#', '#', '#'],
+            ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#'],
+        ];
+
+        const solution = [
+            ['#', '#', 'S', '#', '#', '#', 'S', '#', '#', '#'],
+            ['#', '#', 'N', '#', '#', '#', 'N', '#', '#', '#'],
+            ['#', '#', 'O', '#', '#', '#', 'O', '#', '#', '#'],
+            ['#', 'I', 'W', 'C', 'E', '#', 'W', '#', '#', '#'],
+            ['#', '#', '#', '#', '#', '#', 'S', '#', '#', '#'],
+            ['#', 'S', 'A', 'L', 'A', 'D', 'T', '#', '#', '#'],
+            ['#', '#', '#', '#', '#', '#', 'O', '#', '#', '#'],
+            ['#', 'M', 'A', 'N', 'D', 'A', 'R', 'I', 'N', '#'],
+            ['#', '#', '#', '#', '#', '#', 'M', '#', '#', '#'],
+            ['#', '#', '#', '#', '#', '#', '#', '#', '#', '#'],
+        ];
+
+        const gridContainer = document.getElementById('grid');
+        const messageEl = document.getElementById('message');
+
+        // Создаём сетку
+       
