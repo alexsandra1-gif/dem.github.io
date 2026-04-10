@@ -1,0 +1,46 @@
+<mxfile host="app.diagrams.net">
+  <diagram name="Страница-1" id="xJJWB_4smaggDokk0mbT">
+    <mxGraphModel dx="2231" dy="742" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="RnI_IthzwuK4xxeiDxnE-25" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Индекс " vertex="1">
+          <mxGeometry height="60" width="120" x="680" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="RnI_IthzwuK4xxeiDxnE-26" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Память" vertex="1">
+          <mxGeometry height="60" width="120" x="80" y="220" as="geometry" />
+        </mxCell>
+        <mxCell id="RnI_IthzwuK4xxeiDxnE-27" edge="1" parent="1" style="endArrow=classic;html=1;rounded=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="RnI_IthzwuK4xxeiDxnE-25" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="210" y="250" as="sourcePoint" />
+            <mxPoint x="450" y="380" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RnI_IthzwuK4xxeiDxnE-28" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="25.05.1998" vertex="1">
+          <mxGeometry height="60" width="120" x="200" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="RnI_IthzwuK4xxeiDxnE-29" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Ж" vertex="1">
+          <mxGeometry height="60" width="120" x="80" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="RnI_IthzwuK4xxeiDxnE-30" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Нальчик" vertex="1">
+          <mxGeometry height="60" width="120" x="-40" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="RnI_IthzwuK4xxeiDxnE-31" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="64" vertex="1">
+          <mxGeometry height="60" width="120" x="760" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="RnI_IthzwuK4xxeiDxnE-32" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Ж" vertex="1">
+          <mxGeometry height="60" width="120" x="640" y="340" as="geometry" />
+        </mxCell>
+        <mxCell id="RnI_IthzwuK4xxeiDxnE-34" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Ключ &quot;Пол&quot;" vertex="1">
+          <mxGeometry height="30" width="80" x="680" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="RnI_IthzwuK4xxeiDxnE-35" parent="1" style="rounded=0;whiteSpace=wrap;html=1;" value="Ключ &quot;номер&quot;" vertex="1">
+          <mxGeometry height="30" width="80" x="800" y="310" as="geometry" />
+        </mxCell>
+        <mxCell id="RnI_IthzwuK4xxeiDxnE-36" parent="1" style="text;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;spacingLeft=4;spacingRight=4;overflow=hidden;points=[[0,0.5],[1,0.5]];portConstraint=eastwest;rotatable=0;whiteSpace=wrap;html=1;" value="СУБД обновляет индексный файл, добавляя в него новые значения в ключевое поле ПОЛ" vertex="1">
+          <mxGeometry height="50" width="340" x="270" y="210" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
